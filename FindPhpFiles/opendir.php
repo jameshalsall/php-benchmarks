@@ -23,7 +23,7 @@ if (! $fileHandle) {
 
 $files = array();
 while (false !== ($file = readdir($fileHandle))) {
-    if (preg_match('/\.php$/', $file)) {
+    if (substr($file, -4) == '.php') {
         $files[] = $file;
     }
 }
