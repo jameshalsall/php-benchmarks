@@ -7,7 +7,7 @@ if (! isset($argv[1])) {
 }
 
 // generate benchmarks base directory
-$directory = __DIR__ . DIRECTORY_SEPARATOR . rtrim($argv[1], '/');
+$directory = __DIR__ . DIRECTORY_SEPARATOR . rtrim($argv[1], DIRECTORY_SEPARATOR);
 
 // try opening benchmark directory
 $fileHandle = opendir($directory);
