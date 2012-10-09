@@ -19,7 +19,7 @@ if (! $fileHandle) {
 // TODO: set up a benchmark to test this assumption!
 while (false !== ($file = readdir($fileHandle))) {
     // Currently ignores sub-directories, may be beneficial to scan through them too
-    if (substr($file, 0, 1) == '.' || is_dir($file)) {
+    if (substr($file, 0, 1) == '_' || substr($file, 0, 1) == '.' || is_dir($file)) {
         continue;
     }
 
@@ -29,3 +29,5 @@ while (false !== ($file = readdir($fileHandle))) {
     // execute the benchmark
     echo shell_exec('php ' . $directory . DIRECTORY_SEPARATOR . $file) . PHP_EOL;
 }
+
+closedir($fileHandle);
