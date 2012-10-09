@@ -16,7 +16,7 @@ while ($max) {
 }
 
 foreach ($rawObjects as $rawObject) {
-    $storage->offsetExists($object);
+    isset($storage[$rawObject]);
 }
 
 function getSimpleObject($modifier) {

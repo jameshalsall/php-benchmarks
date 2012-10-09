@@ -10,13 +10,13 @@ $storage = array();
 
 while ($max) {
     $object = getSimpleObject($max);
-    $storage[spl_object_hash($object)] = $object;
+    $storage[] = $object;
     $rawObjects[] = $object;
     $max--;
 }
 
 foreach ($rawObjects as $rawObject) {
-    array_key_exists(spl_object_hash($object), $storage);
+    in_array($object, $storage);
 }
 
 function getSimpleObject($modifier) {
