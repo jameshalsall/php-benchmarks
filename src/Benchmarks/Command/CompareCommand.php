@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Process\Process;
 
 /**
  * Command for comparing benchmark scripts
@@ -52,7 +53,9 @@ class CompareCommand extends Command
         $text      = 'Executing benchmark "' . $benchmark . '" ...';
 
         $output->writeln($text);
+        $output->writeln('');
 
+        // @todo: improve this to use a finder class?
         $directory = $this->getApplication()->getBenchmarksFolder()
             . DIRECTORY_SEPARATOR . rtrim($benchmark, DIRECTORY_SEPARATOR);
 
@@ -70,11 +73,20 @@ class CompareCommand extends Command
                 continue;
             }
 
-            echo $file . PHP_EOL;
-            echo str_repeat('-', strlen($file)) . PHP_EOL . PHP_EOL;
+            $output->writeln($file);
+            $output->writeln(str_repeat('-', strlen($file)));
 
             // execute the benchmark
-            echo shell_exec('php ' . $directory . DIRECTORY_SEPARATOR . $file) . PHP_EOL;
+            $command = 'php ' . $directory . DIRECTORY_SEPARATOR . $file;
+            $process = new Process($command);
+            $process->run();
+
+            // executes after the command finishes
+            if (!$process->isSuccessful()) {
+                throw new \RuntimeException($process->getErrorOutput());
+            }
+
+            $output->write($process->getOutput());
         }
 
         closedir($fileHandle);

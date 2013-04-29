@@ -18,6 +18,7 @@
         }
     },
     "require": {
-        "symfony/console": "dev-master"
+        "symfony/console": "dev-master",
+        "symfony/process": "dev-master"
     }
 }
