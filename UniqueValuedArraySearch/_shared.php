@@ -1,0 +1,4 @@
+<?php
+
+define('UNIQUE_ARRAY_LENGTH', 10000);
+define('SEARCH_REPETITIONS', 10000);
