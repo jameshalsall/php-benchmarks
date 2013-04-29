@@ -19,6 +19,7 @@
     },
     "require": {
         "symfony/console": "dev-master",
-        "symfony/process": "dev-master"
+        "symfony/process": "dev-master",
+        "symfony/finder": "dev-master"
     }
 }

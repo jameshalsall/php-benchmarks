@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 
 /**
@@ -55,29 +56,19 @@ class CompareCommand extends Command
         $output->writeln($text);
         $output->writeln('');
 
-        // @todo: improve this to use a finder class?
         $directory = $this->getApplication()->getBenchmarksFolder()
             . DIRECTORY_SEPARATOR . rtrim($benchmark, DIRECTORY_SEPARATOR);
 
-        // try opening benchmark directory
-        $fileHandle = opendir($directory);
-        if (! $fileHandle) {
-            throw new \RuntimeException('Can not read benchmark directory');
-        }
+        $finder = new Finder();
+        $finder->files()->name('*.php')->notName('_*.php')->in($directory);
 
-        // loop through files in directory - assumed to be more efficient than loading into an array
-        // TODO: set up a benchmark to test this assumption!
-        while (false !== ($file = readdir($fileHandle))) {
-            // Currently ignores sub-directories, may be beneficial to scan through them too
-            if (substr($file, 0, 1) == '_' || substr($file, 0, 1) == '.' || is_dir($file)) {
-                continue;
-            }
-
-            $output->writeln($file);
+        /** @var $file \Symfony\Component\Finder\SplFileInfo */
+        foreach ($finder as $file) {
+            $output->writeln($file->getFilename());
             $output->writeln(str_repeat('-', strlen($file)));
 
             // execute the benchmark
-            $command = 'php ' . $directory . DIRECTORY_SEPARATOR . $file;
+            $command = 'php ' . $file->getPathname();
             $process = new Process($command);
             $process->run();
 
@@ -88,7 +79,5 @@ class CompareCommand extends Command
 
             $output->write($process->getOutput());
         }
-
-        closedir($fileHandle);
     }
 }
