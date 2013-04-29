@@ -66,8 +66,10 @@ class CompareCommand extends Command
 
         /** @var $file \Symfony\Component\Finder\SplFileInfo */
         foreach ($finder as $file) {
-            $output->writeln($file->getFilename());
-            $output->writeln(str_repeat('-', strlen($file)));
+            $outputText = 'Executing file "' . $file->getFilename() . '"';
+            $output->writeln($outputText);
+            $output->writeln(str_repeat('-', strlen($outputText)));
+            $output->writeln('');
 
             // execute the benchmark
             $command = 'php ' . $file->getPathname();
@@ -79,7 +81,7 @@ class CompareCommand extends Command
                 throw new \RuntimeException($process->getErrorOutput());
             }
 
-            $output->write($process->getOutput());
+            $output->writeln($process->getOutput());
         }
     }
 }
