@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4018634c9646af102a6b29a6ceec7e80",
+    "hash": "2da2ce5628ebffe886225cc8f792e15e",
     "packages": [
         {
             "name": "symfony/console",
@@ -148,6 +148,53 @@
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
             "time": "2013-04-25 13:23:11"
+        },
+        {
+            "name": "symfony/stopwatch",
+            "version": "2.2.x-dev",
+            "target-dir": "Symfony/Component/Stopwatch",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Stopwatch.git",
+                "reference": "v2.2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Stopwatch/zipball/v2.2.1",
+                "reference": "v2.2.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Stopwatch\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Stopwatch Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-01-04 16:58:00"
         }
     ],
     "packages-dev": [
@@ -160,7 +207,8 @@
     "stability-flags": {
         "symfony/console": 20,
         "symfony/process": 20,
-        "symfony/finder": 20
+        "symfony/finder": 20,
+        "symfony/stopwatch": 20
     },
     "platform": [
 

@@ -56,32 +56,35 @@ class CompareCommand extends Command
         $output->writeln($text);
         $output->writeln('');
 
-        /** @var $application \Benchmarks\Compare\CompareApplication */
-        $application = $this->getApplication();
-        $directory   = $application->getBenchmarksFolder()
-            . DIRECTORY_SEPARATOR . rtrim($benchmark, DIRECTORY_SEPARATOR);
+        $className = '\\Benchmarks\\Benchmark\\' . $benchmark . '\\' . $benchmark;
+        /** @var \Benchmarks\Benchmark\AbstractBenchmark $benchmark */
+        $benchmark = new $className($output);
+        $benchmark->start();
 
-        $finder = new Finder();
-        $finder->files()->name('*.php')->notName('_*.php')->in($directory);
-
-        /** @var $file \Symfony\Component\Finder\SplFileInfo */
-        foreach ($finder as $file) {
-            $outputText = 'Executing file "' . $file->getFilename() . '"';
-            $output->writeln($outputText);
-            $output->writeln(str_repeat('-', strlen($outputText)));
-            $output->writeln('');
-
-            // execute the benchmark
-            $command = 'php ' . $file->getPathname();
-            $process = new Process($command);
-            $process->run();
-
-            // executes after the command finishes
-            if (!$process->isSuccessful()) {
-                throw new \RuntimeException($process->getErrorOutput());
-            }
-
-            $output->writeln($process->getOutput());
-        }
+//        /** @var $application \Benchmarks\Compare\CompareApplication */
+//        $application = $this->getApplication();
+//        $directory   = $application->getBenchmarksFolder()
+//            . DIRECTORY_SEPARATOR . rtrim($benchmark, DIRECTORY_SEPARATOR);
+//
+//        $finder = new Finder();
+//        $finder->files()->name('*.php')->notName('_*.php')->in($directory);
+//
+//        /** @var $file \Symfony\Component\Finder\SplFileInfo */
+//        foreach ($finder as $file) {
+//            $outputText = 'Executing file "' . $file->getFilename() . '"';
+//            $output->writeln($outputText);
+//            $output->writeln(str_repeat('-', strlen($outputText)));
+//            $output->writeln('');
+//
+//            // execute the benchmark
+//            $command = 'php ' . $file->getPathname();
+//            $process = new Process($command);
+//            $process->run();
+//
+//            // executes after the command finishes
+//            if (!$process->isSuccessful()) {
+//                throw new \RuntimeException($process->getErrorOutput());
+//            }
+//        }
     }
 }
