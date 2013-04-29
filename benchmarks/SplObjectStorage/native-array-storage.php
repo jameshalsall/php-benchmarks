@@ -10,6 +10,8 @@ $max = $objects;
 $rawObjects = array();
 $storage = array();
 
+$object = null;
+
 while ($max) {
     $object = getSimpleObject($max);
     $storage[] = $object;

@@ -4,7 +4,8 @@
  * shared functions file - ignored by comparison script
  */
 
-function getSimpleObject($modifier) {
+function getSimpleObject($modifier)
+{
 
     $object = new stdClass();
     $object->propertyString = 'simpleString' . $modifier;

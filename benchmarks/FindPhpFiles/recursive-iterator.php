@@ -30,5 +30,3 @@ printf("Memory Usage: %f MB \n\n", memory_get_peak_usage() / 1024 / 1024);
 
 // clean up
 cleanupTestFiles($testFilesDir, array('php', 'txt', 'csv'), NUMBER_OF_FILES);
-
-

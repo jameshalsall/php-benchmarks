@@ -56,7 +56,9 @@ class CompareCommand extends Command
         $output->writeln($text);
         $output->writeln('');
 
-        $directory = $this->getApplication()->getBenchmarksFolder()
+        /** @var $application \Benchmarks\Compare\CompareApplication */
+        $application = $this->getApplication();
+        $directory   = $application->getBenchmarksFolder()
             . DIRECTORY_SEPARATOR . rtrim($benchmark, DIRECTORY_SEPARATOR);
 
         $finder = new Finder();

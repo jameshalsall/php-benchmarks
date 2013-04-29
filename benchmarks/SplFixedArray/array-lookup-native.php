@@ -10,10 +10,10 @@ while ($max) {
     $array[] = $max--;
 }
 
-$maxLookups = 2000;
-while ($maxLookups) {
+$maxLookUps = 2000;
+while ($maxLookUps) {
     in_array(rand(0, $elements), $array);
-    $maxLookups--;
+    $maxLookUps--;
 }
 
 printf("Time Taken: %f seconds \n", microtime(true) - $start);
