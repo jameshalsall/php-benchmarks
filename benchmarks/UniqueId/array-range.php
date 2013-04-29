@@ -1,6 +1,6 @@
 <?php
 
-include ('_shared.php');
+include('_shared.php');
 
 $start = microtime(true);
 

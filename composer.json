@@ -1,0 +1,23 @@
+{
+    "name": "markwilson/php-benchmarks",
+    "description": "PHP benchmarks for specific tasks",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Mark Wilson",
+            "email": "mark@89allport.co.uk"
+        },
+        {
+            "name": "James Halsall",
+            "email": "james.t.halsall@googlemail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Benchmarks": "src/"
+        }
+    },
+    "require": {
+        "symfony/console": "dev-master"
+    }
+}
